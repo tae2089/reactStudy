@@ -1,0 +1,6 @@
+export {default as App1} from './page/App1'
+export {default as App2} from './page/App2'
+export {default as App3} from './page/App3'
+export {default as App4} from './page/App4'
+export {default as App5} from './page/App5'
+export {default as App6} from './page/App6'
