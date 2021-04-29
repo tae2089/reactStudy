@@ -1,4 +1,4 @@
-import {React,useState,useMemo} from 'react'
+import {React,useState,useMemo,useCallback} from 'react'
 import Table from 'components/act/Table'
 import CreateUser from 'components/act/CreateUser'
 function App1(){
@@ -10,18 +10,19 @@ function App1(){
         age: 0
         });
     //입력 부분 감지하기
-    const onChange = e => {
+    const onChange = useCallback(
+        e => {
             // 여기서 name 은 입력 문구 태그의 name을 뜻함
             // value는 인풋에 있는 데이터를 의미함
             const {name, value} = e.target;
             //데이터 새로 고쳐쓰기
-            console.log(name)
-            console.log(value)
             setInputs({
                 ...inputs,
                 [name]: value
                 });
-    }
+        },
+        [inputs],
+    )
 
         const {name ,email, age} = inputs;
         const columns = useMemo(
@@ -58,16 +59,22 @@ function App1(){
                 }
             ])
     // 데이터 입력
-        const onCreate= () => {
-            const user  = {
-                name,
-                email,
-                age
-            }
-            setdata([...data,user]);
-            console.log(data);
-        }
-
+            const onCreate = useCallback(
+                () => {
+                    const user = {
+                        name,
+                        email,
+                        age
+                    }
+                    setdata([...data,user]);
+                    setInputs({
+                        name: '',
+                        email: '',
+                        age:0
+                    })
+                },
+                [data,name,email,age],
+            )
     return (
         <div>
             <CreateUser onCreate= {onCreate} onChange = {onChange} username = {name} email = {email} age = {age} />

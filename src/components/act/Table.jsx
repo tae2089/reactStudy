@@ -14,9 +14,6 @@ return data.map((person) => (<tr>
     }
     const dataList = useMemo(() => createData(data),[data])
     
-    
-    
-
     return(
         <div>
         <table>

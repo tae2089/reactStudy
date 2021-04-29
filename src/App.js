@@ -1,4 +1,3 @@
-import './App.css';
 import { Route, Switch,BrowserRouter as Router } from "react-router-dom"
 import {App1,App2,App3,App4,App5,App6} from "./pageurl"
 function App() {
